@@ -1,8 +1,24 @@
-﻿using System;
-
-public class Class1
+﻿namespace fluffy_corner.Models
 {
-	public Class1()
-	{
-	}
+    public class OrderItem
+    {
+        
+        public int Id { get; set; }
+        
+        public string ProductName { get; set; }
+        
+        public decimal UnitPrice { get; set; }
+        
+        public int Quantity { get; set; }
+        
+        public decimal TotalPrice { get; set; }
+
+        // Foreign Keys
+        public int OrderId { get; set; }
+        public int ProductId { get; set; }
+
+        // Navigation
+        public Order Order { get; set; }
+        public Product Product { get; set; }
+    }
 }
