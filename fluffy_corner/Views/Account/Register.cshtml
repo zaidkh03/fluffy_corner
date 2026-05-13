@@ -1,0 +1,48 @@
+﻿@using fluffy_corner.ViewModels
+@model RegisterViewModel
+
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="card p-4 shadow-sm" style="width: 100%; max-width: 500px; border-radius: 15px; border: none;">
+
+        <div class="text-center mb-4">
+            <h3 class="fw-bold"><i class="fas fa-dog me-2"></i>Pawzy</h3>
+        </div>
+
+        <h4 class="fw-bold mb-1">Create Account</h4>
+        <p class="text-muted small mb-4">Already have an account? <a asp-action="Login" class="text-decoration-none">Sign in</a></p>
+
+        <form asp-action="Register" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <input asp-for="FirstName" class="form-control" placeholder="First Name" style="padding: 12px; border-radius: 8px;" />
+                    <span asp-validation-for="FirstName" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input asp-for="LastName" class="form-control" placeholder="Last Name" style="padding: 12px; border-radius: 8px;" />
+                    <span asp-validation-for="LastName" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <input asp-for="Email" class="form-control" placeholder="Email" style="padding: 12px; border-radius: 8px;" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <input asp-for="Password" type="password" class="form-control" placeholder="Password" style="padding: 12px; border-radius: 8px;" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-4">
+                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password" style="padding: 12px; border-radius: 8px;" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 fw-bold" style="background-color: #005bd3; border-radius: 10px; padding: 12px; border: none;">
+                Create Account
+            </button>
+        </form>
+    </div>
+</div>
