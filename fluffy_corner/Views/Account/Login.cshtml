@@ -1,0 +1,53 @@
+﻿@using fluffy_corner.ViewModels
+@model LoginViewModel
+
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="card p-4 shadow-sm" style="width: 100%; max-width: 450px; border-radius: 15px; border: none;">
+
+        <!-- Logo Section -->
+        <div class="text-center mb-4">
+            <h3 class="fw-bold"><i class="fas fa-dog me-2"></i>FluffyCorner</h3>
+        </div>
+
+        <h4 class="fw-bold mb-1">Sign in</h4>
+        <p class="text-muted small mb-4">Sign in or <a asp-action="Register" class="text-decoration-none">create an account</a></p>
+
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+            <!-- Shop Login (Optional Social Style) -->
+            <button type="button" class="btn w-100 mb-3 text-white fw-bold" style="background-color: #5a31f4; border-radius: 10px; padding: 12px;">
+                Continue with <span class="fw-light">shop</span>
+            </button>
+
+            <div class="d-flex align-items-center my-3">
+                <hr class="flex-grow-1 text-muted">
+                <span class="mx-2 text-muted small">or</span>
+                <hr class="flex-grow-1 text-muted">
+            </div>
+
+            <!-- Email Input -->
+            <div class="mb-3">
+                <input asp-for="Email" class="form-control" placeholder="Email" style="padding: 12px; border-radius: 8px;" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <!-- Password Input -->
+            <div class="mb-3">
+                <input asp-for="Password" type="password" class="form-control" placeholder="Password" style="padding: 12px; border-radius: 8px;" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <!-- Remember Me -->
+            <div class="form-check mb-4">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label class="form-check-label text-muted small" asp-for="RememberMe">Remember me</label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100 fw-bold" style="background-color: #005bd3; border-radius: 10px; padding: 12px; border: none;">
+                Continue
+            </button>
+        </form>
+    </div>
+</div>
