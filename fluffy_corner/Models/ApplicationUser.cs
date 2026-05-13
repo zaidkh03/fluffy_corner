@@ -19,4 +19,3 @@ namespace fluffy_corner.Models
         public ICollection<Testimonial> Testimonials { get; set; }
     }
 }
-dotnet build
