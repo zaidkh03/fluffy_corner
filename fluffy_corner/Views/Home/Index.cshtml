@@ -1,8 +1,242 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<section class="hero-section">
+    <div class="container-fluid">
+        <div class="row align-items-center hero-content">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+            <div class="col-lg-5 hero-text">
+                <p class="hero-small">True Companions</p>
+
+                <h1 class="hero-title">
+                    Love, Treats, And Tails
+                </h1>
+
+                <p class="hero-desc">
+                    Discover the best food, toys, and accessories for your lovely pets.
+                </p>
+
+                <a href="#" class="shop-btn">Shop Now</a>
+            </div>
+            <div class="col-lg-7 text-center">
+                <img src="/images/pet_nobg.png" class="hero-img" />
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="category-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <p class="category-small">Pet Picks</p>
+
+            <h2 class="category-title">
+                Everything Your Pet Needs
+            </h2>
+        </div>
+
+        <div class="row justify-content-center g-4">
+
+            <!-- Cats -->
+            <div class="col-md-3 col-6">
+                <a href="#" class="category-card">
+
+                    <div class="category-icon">
+                        🐱
+                    </div>
+
+                    <h4>Cats</h4>
+
+                </a>
+            </div>
+
+            <!-- Dogs -->
+            <div class="col-md-3 col-6">
+                <a href="#" class="category-card">
+
+                    <div class="category-icon">
+                        🐶
+                    </div>
+
+                    <h4>Dogs</h4>
+
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="products-section">
+    <div class="container-fluid px-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <p class="section-small">Flash Deals</p>
+                <h2 class="section-title">Best Selling Products</h2>
+            </div>
+
+            <a href="/Products" class="view-all-link">View All →</a>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <span class="discount-badge">-20%</span>
+                    <img src="/images/product1.png" class="product-img" />
+                    <h4>Reflex Dog Food</h4>
+                    <p>15.00 JD</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <span class="discount-badge">-12%</span>
+                    <img src="/images/product2.png" class="product-img" />
+                    <h4>Cat Scratcher Bed</h4>
+                    <p>22.00 JD</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <span class="discount-badge">-9%</span>
+                    <img src="/images/product3.png" class="product-img" />
+                    <h4>Pet House Bed</h4>
+                    <p>30.00 JD</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="testimonial-section">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-5">
+
+                <p class="testimonial-small">
+                    Happy Pets, Happy Owners
+                </p>
+
+                <h2 class="testimonial-title">
+                    What Pet Parents Say
+                </h2>
+
+                <p class="testimonial-desc">
+                    Hear heartwarming stories and honest reviews
+                    from our happy customers.
+                </p>
+
+            </div>
+
+            <div class="col-lg-7">
+
+                <div class="testimonial-card">
+
+                    <div class="row align-items-center">
+
+                        <div class="col-md-4 text-center">
+                            <img src="/images/testimonial.png"
+                                 class="testimonial-img" />
+                        </div>
+
+                        <div class="col-md-8">
+
+                            <div class="stars">
+                                ★★★★★
+                            </div>
+
+                            <p class="testimonial-text">
+                                My dog absolutely loves everything we got from here —
+                                the toys, treats, and bed are amazing quality!
+                            </p>
+
+                            <h5 class="testimonial-name">
+                                Sarah Johnson
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer-section">
+
+    <div class="container">
+
+        <div class="row gy-5">
+
+            <div class="col-lg-4">
+                <h2 class="footer-logo">
+                    🐾 Fluffy Corner
+                </h2>
+
+                <p class="footer-text">
+                    Your trusted pet shop for food, toys,
+                    accessories, and everything your pets love.
+                </p>
+            </div>
+
+            <div class="col-lg-2">
+                <h4 class="footer-title">Quick Links</h4>
+
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/Products">Products</a></li>
+                    <li><a href="/Categories">Categories</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2">
+                <h4 class="footer-title">Categories</h4>
+
+                <ul class="footer-links">
+                    <li><a href="#">Cats</a></li>
+                    <li><a href="#">Dogs</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4">
+                <h4 class="footer-title">Contact</h4>
+
+                <p class="footer-contact">
+                    📍 Amman, Jordan
+                </p>
+
+                <p class="footer-contact">
+                    📞 +962 7XXXXXXXX
+                </p>
+
+                <p class="footer-contact">
+                    ✉ fluffycorner@gmail.com
+                </p>
+            </div>
+
+        </div>
+
+        <hr class="footer-line" />
+
+        <div class="footer-bottom">
+            © 2026 Fluffy Corner. All Rights Reserved.
+        </div>
+
+    </div>
+
+</footer>
