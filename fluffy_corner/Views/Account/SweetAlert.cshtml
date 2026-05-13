@@ -1,0 +1,16 @@
+﻿<!-- SweetAlert CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    @if (TempData["Success"] != null)
+    {
+            <text>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: '@TempData["Success"]',
+                    confirmButtonColor: '#005bd3'
+                });
+            </text>
+    }
+</script>
