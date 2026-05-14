@@ -1,20 +1,47 @@
-﻿<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
-    <div class="card p-5 shadow-sm text-center" style="width: 100%; max-width: 500px; border-radius: 15px; border: none;">
+﻿@{
+    Layout = "_Layout"; 
+}
 
-        <div class="mb-4">
-            <i class="fas fa-exclamation-triangle text-warning" style="font-size: 4rem;"></i>
-        </div>
+<div class="container text-center d-flex flex-column align-items-center justify-content-center" style="min-height: 80vh; background-color: #f8faff;">
 
-        <h2 class="fw-bold text-danger mb-2">Access Denied</h2>
-        <p class="text-muted mb-4">Sorry, you do not have permission to view this page. If you think this is a mistake, please contact the administrator.</p>
+    
+    <div class="error-illustration mb-4" style="position: relative; display: inline-block;">
+        <h1 style="font-size: 10rem; font-weight: 900; color: #2d3436; opacity: 0.1; margin: 0;">403</h1>
 
-        <div class="d-grid gap-2">
-            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary fw-bold" style="border-radius: 10px; padding: 12px;">
-                Go to Homepage
-            </a>
-            <a asp-action="Login" class="btn btn-link text-decoration-none text-muted small">
-                Sign in with a different account
-            </a>
-        </div>
+      
+        <img src="/images/cat-error.png"
+             alt="Access Denied"
+             style="width: 300px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
     </div>
+
+    <!-- النصوص -->
+    <div class="error-content">
+        <h2 class="fw-bold" style="color: #2d3436; font-size: 2.5rem;">OOPS...</h2>
+        <p class="text-muted mb-4" style="font-size: 1.2rem;">YOU DON'T HAVE PERMISSION TO ACCESS THIS PAGE</p>
+    </div>
+
+    <!-- الزر بنفس اللون والشكل الموجود في الصورة -->
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary px-5 py-2 shadow-sm"
+       style="background-color: #4466d1; border: none; border-radius: 25px; font-weight: 500; transition: 0.3s;">
+        Go back to Home
+    </a>
 </div>
+
+<style>
+    /* تأثير بسيط عند تمرير الماوس على الزر */
+    .btn-primary:hover {
+        background-color: #3554b5 !important;
+        transform: translateY(-2px);
+    }
+
+    /* جعل رقم الخلفية يستجيب لحجم الشاشة */
+    @@media (max-width: 768px) {
+        h1 {
+            font-size: 6rem !important;
+        }
+
+        img {
+            width: 200px !important;
+        }
+    }
+</style>

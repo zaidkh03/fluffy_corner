@@ -1,5 +1,7 @@
 using fluffy_corner.Data;
 using fluffy_corner.Models;
+using fluffy_corner.ServiceLayer.Interfaces;
+using fluffy_corner.ServiceLayer.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,7 +38,13 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => {
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-// MVC + Razor Pages
+builder.Services.ConfigureApplicationCookie(options => {
+    options.AccessDeniedPath = "/Account/AccessDenied";
+    options.LoginPath = "/Account/Login";
+});
+
+//builder.Services.AddScoped<IDashboardService, DashboardService>();
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
@@ -61,7 +69,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// MVC Routes
+// Area route for admin dashboard and other areas
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
