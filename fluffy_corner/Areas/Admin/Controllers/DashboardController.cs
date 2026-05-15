@@ -9,12 +9,17 @@ namespace fluffy_corner.Areas.Admin.Controllers
     public class DashboardController : Controller
     {
         private readonly IDashboardService _dashboardService;
+
+        // (Constructor Injection)
         public DashboardController(IDashboardService dashboardService)
         {
             _dashboardService = dashboardService;
         }
+
+        // الصفحة الرئيسية للأدمن (Dashboard)
         public async Task<IActionResult> Index()
         {
+            // جلب الإحصائيات من الـ Service Layer
             var stats = await _dashboardService.GetAdminDashboardStatsAsync();
 
             // تمرير الإحصائيات للـ View باستخدام ViewBag
@@ -24,20 +29,19 @@ namespace fluffy_corner.Areas.Admin.Controllers
             ViewBag.TotalCategories = stats["TotalCategories"];
 
             return View();
-            
         }
 
         // (Orders Management)
         public IActionResult Orders()
         {
-          
+            //  OrderService
             return View();
         }
 
-        //(Moderation)
+        //  (Moderation)
         public IActionResult Moderation()
         {
-          
+            //(Approve/Reject)
             return View();
         }
     }

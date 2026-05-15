@@ -1,7 +1,5 @@
-﻿using fluffy_corner.ServiceLayer.Interfaces;
-using fluffy_corner.Data;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using fluffy_corner.Data;
+using fluffy_corner.ServiceLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace fluffy_corner.ServiceLayer.Services
@@ -9,7 +7,6 @@ namespace fluffy_corner.ServiceLayer.Services
     public class DashboardService : IDashboardService
     {
         private readonly ApplicationDbContext _context;
-
         public DashboardService(ApplicationDbContext context)
         {
             _context = context;
@@ -22,7 +19,7 @@ namespace fluffy_corner.ServiceLayer.Services
                 { "TotalUsers", await _context.Users.CountAsync() },
                 { "TotalProducts", await _context.Products.CountAsync() },
                 { "TotalOrders", await _context.Orders.CountAsync() },
-                { "TotalCategories", await _context.Categories.CountAsync() }
+                { "TotalCategories", await _context.Categories.CountAsync()}
             };
             return stats;
         }
