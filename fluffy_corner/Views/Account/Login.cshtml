@@ -1,51 +1,143 @@
 ﻿@using fluffy_corner.ViewModels
 @model LoginViewModel
 
-<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
-    <div class="card p-4 shadow-sm" style="width: 100%; max-width: 450px; border-radius: 15px; border: none;">
+<style>
+    :root {
+        --pawzy-peach: #FFEBE1; /* اللون المشمشي الناعم من الهوية */
+        --pawzy-yellow: #FFC400; /* الأصفر الحيوي المميز */
+        --pawzy-dark: #1E2229; /* اللون الداكن للنصوص والعناصر */
+        --pawzy-gray-light: #F8FAFC; /* خلفية هادئة جداً للصفحة */
+    }
 
-        <!-- Logo Section -->
-        <div class="text-center mb-4">
-            <h3 class="fw-bold"><i class="fas fa-dog me-2"></i>FluffyCorner</h3>
+    body {
+        background-color: var(--pawzy-gray-light) !important;
+        position: relative;
+    }
+
+       
+
+    /* كرت تسجيل الدخول */
+    .login-card {
+        width: 100%;
+        max-width: 440px;
+        border-radius: 24px !important; /* حواف دائرية ناعمة ومودرن */
+        border: 1px solid #E2E8F0 !important;
+        background: #FFFFFF;
+    }
+
+    /* الشعار */
+    .brand-logo-text {
+        color: var(--pawzy-dark);
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+        .brand-logo-text i {
+            color: var(--pawzy-yellow); /* جعل أيقونة الكلب باللون الأصفر الحيوي */
+        }
+
+    .text-pawzy-link {
+        color: #B25329 !important; /* لون بني دافئ متناسق مع المشمشي للروابط */
+        font-weight: 600;
+    }
+
+    /* تخصيص حقول الإدخال */
+    .pawzy-input {
+        padding: 14px 16px !important;
+        border-radius: 12px !important; /* حواف مطابقة للسايدبار */
+        border: 1px solid #CBD5E1 !important;
+        background-color: #FAFAFA;
+        color: var(--pawzy-dark);
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+    }
+
+        .pawzy-input:focus {
+            background-color: #FFFFFF;
+            border-color: var(--pawzy-yellow) !important;
+            box-shadow: 0 0 0 3px rgba(255, 196, 0, 0.15) !important;
+        }
+
+    /* زر الدخول الرئيسي (أصفر مشرق كزر المتجر) */
+    .btn-pawzy-submit {
+        background-color: var(--pawzy-yellow) !important;
+        color: var(--pawzy-dark) !important;
+        border-radius: 50px !important; /* دائري بالكامل ليتطابق مع زر Shop Now */
+        padding: 14px !important;
+        font-weight: 700;
+        border: none !important;
+        transition: all 0.25s ease;
+    }
+
+        .btn-pawzy-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 196, 0, 0.25);
+        }
+
+    /* زر الدخول البديل (مشمشي ناعم وراقٍ) */
+    .btn-pawzy-alt {
+        background-color: var(--pawzy-peach) !important;
+        color: #B25329 !important;
+        border-radius: 50px !important;
+        padding: 14px !important;
+        font-weight: 700;
+        border: none !important;
+        transition: all 0.25s ease;
+    }
+
+        .btn-pawzy-alt:hover {
+            background-color: #FDDCD0 !important;
+            transform: translateY(-2px);
+        }
+
+    /* تخصيص الـ Checkbox */
+    .form-check-input:checked {
+        background-color: var(--pawzy-yellow) !important;
+        border-color: var(--pawzy-yellow) !important;
+    }
+</style>
+
+<div class="d-flex justify-content-center align-items-center vh-100 p-3">
+    <div class="card login-card p-4 shadow-sm">
+
+        <div class="text-center mb-4 mt-2">
+            <h3 class="brand-logo-text"><img src="~/images/pets.png" width="20px" height="20px"/>  FluffyCorner</h3>
         </div>
 
-        <h4 class="fw-bold mb-1">Sign in</h4>
-        <p class="text-muted small mb-4">Sign in or <a asp-action="Register" class="text-decoration-none">create an account</a></p>
+        <h4 class="fw-bold mb-1" style="color: var(--pawzy-dark);">Sign in</h4>
+        <p class="text-muted small mb-4">Sign in or <a asp-action="Register" class="text-decoration-none text-pawzy-link">create an account</a></p>
 
         <form asp-action="Login" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
 
-            <!-- Shop Login (Optional Social Style) -->
-            <button type="button" class="btn w-100 mb-3 text-white fw-bold" style="background-color: #5a31f4; border-radius: 10px; padding: 12px;">
-                Continue with <span class="fw-light">shop</span>
+            <button type="button" class="btn btn-pawzy-alt w-100 mb-2">
+                Continue with <span class="fw-light">Shop</span>
             </button>
 
-            <div class="d-flex align-items-center my-3">
-                <hr class="flex-grow-1 text-muted">
-                <span class="mx-2 text-muted small">or</span>
-                <hr class="flex-grow-1 text-muted">
+            <div class="d-flex align-items-center my-4">
+                <hr class="flex-grow-1 text-muted opacity-25">
+                <span class="mx-3 text-muted small opacity-75">or</span>
+                <hr class="flex-grow-1 text-muted opacity-25">
             </div>
 
-            <!-- Email Input -->
             <div class="mb-3">
-                <input asp-for="Email" class="form-control" placeholder="Email" style="padding: 12px; border-radius: 8px;" />
-                <span asp-validation-for="Email" class="text-danger small"></span>
+                <input asp-for="Email" class="form-control pawzy-input" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger small mt-1 d-block"></span>
             </div>
 
-            <!-- Password Input -->
             <div class="mb-3">
-                <input asp-for="Password" type="password" class="form-control" placeholder="Password" style="padding: 12px; border-radius: 8px;" />
-                <span asp-validation-for="Password" class="text-danger small"></span>
+                <input asp-for="Password" type="password" class="form-control pawzy-input" placeholder="Password" />
+                <span asp-validation-for="Password" class="text-danger small mt-1 d-block"></span>
             </div>
 
-            <!-- Remember Me -->
-            <div class="form-check mb-4">
-                <input asp-for="RememberMe" class="form-check-input" />
-                <label class="form-check-label text-muted small" asp-for="RememberMe">Remember me</label>
+            <div class="d-flex justify-content-between align-items-center mb-4 px-1">
+                <div class="form-check">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label class="form-check-label text-muted small" asp-for="RememberMe">Remember me</label>
+                </div>
             </div>
 
-            <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary w-100 fw-bold" style="background-color: #005bd3; border-radius: 10px; padding: 12px; border: none;">
+            <button type="submit" class="btn btn-pawzy-submit w-100">
                 Continue
             </button>
         </form>

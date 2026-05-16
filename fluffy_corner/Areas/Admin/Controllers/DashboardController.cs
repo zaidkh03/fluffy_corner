@@ -22,13 +22,14 @@ namespace fluffy_corner.Areas.Admin.Controllers
             // جلب الإحصائيات من الـ Service Layer
             var stats = await _dashboardService.GetAdminDashboardStatsAsync();
 
+            var chartData = await _dashboardService.GetSalesAnalyticsAsync();
             // تمرير الإحصائيات للـ View باستخدام ViewBag
             ViewBag.TotalUsers = stats["TotalUsers"];
             ViewBag.TotalOrders = stats["TotalOrders"];
             ViewBag.TotalProducts = stats["TotalProducts"];
             ViewBag.TotalCategories = stats["TotalCategories"];
 
-            return View();
+            return View(chartData);
         }
 
         // (Orders Management)

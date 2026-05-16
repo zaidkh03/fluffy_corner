@@ -1,0 +1,22 @@
+﻿
+.login-btn {
+    background-color: #1E2229 !important;
+    color: #FFFFFF !important;
+    border-radius: 50px !important;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 32px;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.25s ease;
+    border: 2px solid #1E2229;
+}
+
+.login-btn:hover {
+    background-color: #FFFFFF !important;
+    color: #1E2229 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 34, 41, 0.15);
+}
+
+

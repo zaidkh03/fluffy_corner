@@ -1,0 +1,116 @@
+﻿<style >
+/* Fluffy Theme Variables */
+:root {
+    --fluffy-yellow: #FFD200;
+    --fluffy-bg-dark: #121212;
+    --fluffy-card-bg: #1A1A1A;
+    --fluffy-border: #2A2A2A;
+    --text-muted: #A0A0A0;
+}
+
+body {
+    background-color: var(--pawzy-bg-dark);
+    color: #F5F5F5;
+}
+
+/* Card Styling */
+.pawzy-card {
+    background-color: var(--pawzy-card-bg);
+    border: 1px solid var(--pawzy-border);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.page-title {
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.badge-total {
+    background: rgba(255, 210, 0, 0.1);
+    color: var(--pawzy-yellow);
+    border: 1px solid rgba(255, 210, 0, 0.2);
+    font-weight: 500;
+}
+
+/* Table Customization */
+.pawzy-table {
+    color: #E0E0E0;
+}
+
+    .pawzy-table thead th {
+        background-color: #222222;
+        color: var(--pawzy-yellow);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid var(--pawzy-border);
+        padding: 16px;
+    }
+
+    .pawzy-table tbody tr {
+        border-bottom: 1px solid var(--pawzy-border);
+        transition: all 0.2s ease-in-out;
+    }
+
+        .pawzy-table tbody tr:hover {
+            background-color: #222222 !important;
+            transform: scale(1.002);
+        }
+
+    .pawzy-table td {
+        padding: 16px;
+    }
+
+/* Custom Order Status Badges */
+.status-pill {
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-pending {
+    background: rgba(255, 193, 7, 0.15);
+    color: #FFC107;
+    border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+.status-shipped {
+    background: rgba(13, 202, 240, 0.15);
+    color: #0DCAF0;
+    border: 1px solid rgba(13, 202, 240, 0.2);
+}
+
+.status-completed {
+    background: rgba(25, 135, 84, 0.15);
+    color: #198754;
+    border: 1px solid rgba(25, 135, 84, 0.2);
+}
+
+.status-cancelled {
+    background: rgba(220, 53, 69, 0.15);
+    color: #DC3545;
+    border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+/* Action Buttons */
+.btn-action {
+    background: #252525;
+    border: 1px solid var(--pawzy-border);
+    color: #E0E0E0;
+    transition: all 0.2s;
+}
+
+    .btn-action:hover {
+        background: var(--pawzy-yellow);
+        color: #121212;
+        border-color: var(--pawzy-yellow);
+    }
+
+</style >

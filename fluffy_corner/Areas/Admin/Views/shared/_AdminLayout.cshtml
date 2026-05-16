@@ -5,73 +5,200 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FluffyCorner Admin</title>
 
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap 5 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <!-- Custom Layout CSS -->
-    <link rel="stylesheet" href="~/admin/css/admin-layout.css" />
+    <link rel="stylesheet" href="~/admin/css/admin-layout.css" asp-append-version="true" />
+
+    <style>
+        :root {
+            --pawzy-peach: #FFEBE1; /* اللون المشمشي الناعم من الهوية الجديدة */
+            --pawzy-yellow: #FFC400; /* الأصفر المشرق للأزرار والـ Active Tags */
+            --pawzy-dark: #1E2229; /* لون النصوص والعناوين الداكن والواضح */
+            --pawzy-sidebar-bg: #FFFFFF; /* تحويل السايدبار بالكامل لخلفية بيضاء راقية ونظيفة */
+            --pawzy-main-bg: #F8FAFC; /* رمادي خفيف جداً لخلفية المحتوى الرئيسي */
+            --text-muted: #64748B;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--pawzy-main-bg);
+            color: var(--pawzy-dark);
+            overflow-x: hidden;
+        }
+
+        /* تنسيق السايدبار المطور */
+        #sidebar {
+            min-width: 270px;
+            max-width: 270px;
+            background: var(--pawzy-sidebar-bg) !important;
+            color: var(--pawzy-dark) !important;
+            transition: var(--transition);
+            min-height: 100vh;
+            border-right: 1px solid #E2E8F0;
+        }
+
+            #sidebar.active {
+                margin-left: -270px;
+            }
+
+            /* هيدر السايدبار المحتوي على اللوجو */
+            #sidebar .sidebar-header {
+                padding: 25px;
+                border-bottom: 1px solid #F1F5F9;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* عناوين القوائم الجانبية (Main Menu, Management, etc) */
+            #sidebar p {
+                color: var(--text-muted) !important;
+                padding: 20px 25px 5px 25px;
+                margin: 0;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                font-weight: 700;
+                letter-spacing: 0.8px;
+            }
+
+            /* روابط وعناصر القائمة */
+            #sidebar ul li a {
+                padding: 12px 20px !important;
+                margin: 4px 15px !important; /* مسافات تجعل العنصر كأنه كرت عائم بحواف ناعمة */
+                font-size: 0.95rem;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                color: #475569 !important;
+                text-decoration: none;
+                transition: var(--transition);
+                border-radius: 12px !important;
+            }
+
+                /* تأثير التمرير (Hover) */
+                #sidebar ul li a:hover {
+                    color: var(--pawzy-dark) !important;
+                    background-color: #F1F5F9 !important;
+                }
+
+            /* تأثير الصفحة النشطة (Active Page) متوافق تماماً مع الثيم المشمشي */
+            #sidebar ul li.active > a {
+                color: #B25329 !important; /* درجة غامقة متناسقة مع المشمشي للقراءة */
+                background-color: var(--pawzy-peach) !important;
+                font-weight: 600;
+            }
+
+            /* الأيقونات الجانبية */
+            #sidebar ul li a i {
+                margin-right: 12px;
+                font-size: 1.1rem;
+                width: 24px;
+                text-align: center;
+                color: #64748B;
+                transition: var(--transition);
+            }
+
+            /* إضاءة الأيقونة بالأصفر الحيوي عند تفعيل الصفحة */
+            #sidebar ul li.active > a i {
+                color: var(--pawzy-yellow) !important;
+            }
+
+        /* محتوى الصفحة الرئيسي والـ Navbar العلوية */
+        #content {
+            width: 100%;
+            min-height: 100vh;
+            background-color: var(--pawzy-main-bg);
+            transition: var(--transition);
+        }
+
+        .admin-navbar {
+            background: #FFFFFF !important;
+            padding: 16px 30px;
+            border-bottom: 1px solid #E2E8F0;
+            box-shadow: none !important;
+        }
+
+        /* زر إخفاء/إظهار السايدبار */
+        #sidebarCollapse {
+            background-color: #F1F5F9;
+            border: none;
+            color: var(--pawzy-dark);
+            padding: 8px 14px;
+            border-radius: 8px;
+        }
+
+            #sidebarCollapse:hover {
+                background-color: #E2E8F0;
+            }
+
+        /* بروفايل المستخدم دائرية متناسقة */
+        .user-profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50% !important;
+            object-fit: cover;
+            border: 2px solid #E2E8F0;
+        }
+    </style>
 
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
 
     <div class="d-flex">
-        <!-- Sidebar -->
         <nav id="sidebar">
-            <div class="sidebar-header d-flex align-items-center">
-                <img src="~/images/Fluffy-logo.png" alt="Fluffy" height="70" width="70" ">
+            <div class="sidebar-header">
+                <img src="~/images/Fluffy-logo.png" alt="Fluffy" height="70" width="70">
             </div>
 
             <p>Main Menu</p>
-            <ul class="list-unstyled components mt-4">
-                
-                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Dashboard" ? "active" : "")">
+            <ul class="list-unstyled components mt-2">
+                <li class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Dashboard" ? "active" : "")">
                     <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
                         <i class="fas fa-th-large"></i> Dashboard
                     </a>
                 </li>
-                <li>
-                    <a href="#"><i class="fas fa-shopping-bag"></i> Orders</a>
+                <li class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Order" ? "active" : "")">
+                    <a href="/Admin/Order/Index">
+                        <i class="fas fa-shopping-bag"></i> Orders
+                    </a>
                 </li>
-                <li>
+                <li class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Products" ? "active" : "")">
                     <a href="#"><i class="fas fa-bone"></i> Products</a>
                 </li>
 
                 <p>Content Management</p>
-                <li>
+                <li class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Testimonials" ? "active" : "")">
                     <a href="#"><i class="fas fa-quote-left"></i> Testimonials</a>
                 </li>
-                <li>
+                <li class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Comments" ? "active" : "")">
                     <a href="#"><i class="fas fa-comment-alt"></i> Comments</a>
                 </li>
 
                 <p>Settings</p>
-                <li>
+                <li class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Roles" ? "active" : "")">
                     <a href="#"><i class="fas fa-user-shield"></i> Roles</a>
                 </li>
-                <li>
+                <li class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Settings" ? "active" : "")">
                     <a href="#"><i class="fas fa-cog"></i> Site Settings</a>
                 </li>
             </ul>
         </nav>
 
-        <!-- Page Content Area -->
         <div id="content">
-            <!-- Top Navbar -->
             <nav class="navbar navbar-expand-lg admin-navbar">
                 <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn btn-light">
+                    <button type="button" id="sidebarCollapse" class="btn">
                         <i class="fas fa-align-left"></i>
                     </button>
 
                     <div class="ms-auto d-flex align-items-center">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
-                                <span class="me-2 d-none d-md-inline fw-semibold">Admin Name</span>
-                                <img src="https://ui-avatars.com/api/?name=Admin&background=FFD200&color=1A1C1E" class="user-profile-img">
+                                <span class="me-2 d-none d-md-inline fw-semibold" style="color: var(--pawzy-dark);">Admin Name</span>
+                                <img src="https://ui-avatars.com/api/?name=Admin&background=FFC400&color=1E2229" class="user-profile-img">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-3" style="border-radius: 15px;">
                                 <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a></li>
@@ -83,14 +210,12 @@
                 </div>
             </nav>
 
-            <!-- Main Body Wrapper -->
             <div class="p-4">
                 @RenderBody()
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 

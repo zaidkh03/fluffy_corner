@@ -50,6 +50,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
 
 var app = builder.Build();
 

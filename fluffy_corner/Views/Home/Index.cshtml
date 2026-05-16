@@ -13,7 +13,13 @@
                     Discover the best food, toys, and accessories for your lovely pets.
                 </p>
 
-                <a href="#" class="shop-btn">Shop Now</a>
+                <div class="d-flex gap-3 align-items-center mt-4 flex-wrap">
+                    <a href="#" class="shop-btn">Shop Now</a>
+
+                    <a asp-controller="Account" asp-action="Login" class="login-btn">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login
+                    </a>
+                </div>
             </div>
             <div class="col-lg-7 text-center">
                 <img src="/images/pet_nobg.png" class="hero-img" />
@@ -22,6 +28,8 @@
         </div>
     </div>
 </section>
+
+
 <section class="category-section">
 
     <div class="container">
@@ -36,7 +44,6 @@
 
         <div class="row justify-content-center g-4">
 
-            <!-- Cats -->
             <div class="col-md-3 col-6">
                 <a href="#" class="category-card">
 
@@ -49,7 +56,6 @@
                 </a>
             </div>
 
-            <!-- Dogs -->
             <div class="col-md-3 col-6">
                 <a href="#" class="category-card">
 
