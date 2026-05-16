@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace fluffy_corner.ServiceLayer.Services
 {
-    public class DashboardService : IDashboardService
     {
         private readonly ApplicationDbContext _context;
         public DashboardService(ApplicationDbContext context)
@@ -18,8 +17,6 @@ namespace fluffy_corner.ServiceLayer.Services
             {
                 { "TotalUsers", await _context.Users.CountAsync() },
                 { "TotalProducts", await _context.Products.CountAsync() },
-                { "TotalOrders", await _context.Orders.CountAsync() },
-                { "TotalCategories", await _context.Categories.CountAsync()}
             };
             return stats;
         }
