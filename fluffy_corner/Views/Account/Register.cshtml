@@ -1,46 +1,120 @@
 ﻿@using fluffy_corner.ViewModels
 @model RegisterViewModel
 
-<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
-    <div class="card p-4 shadow-sm" style="width: 100%; max-width: 500px; border-radius: 15px; border: none;">
+<style>
+    :root {
+        --pawzy-peach: #FFEBE1; /* اللون المشمشي الناعم من الهوية */
+        --pawzy-yellow: #FFC400; /* الأصفر الحيوي المميز */
+        --pawzy-dark: #1E2229; /* اللون الداكن للنصوص والعناصر */
+        --pawzy-gray-light: #F8FAFC; /* خلفية هادئة جداً للصفحة */
+    }
 
-        <div class="text-center mb-4">
-            <h3 class="fw-bold"><i class="fas fa-dog me-2"></i>Pawzy</h3>
+    body {
+        background-color: var(--pawzy-gray-light) !important;
+        /* باترن قطط ناعم جداً ممتد ومتناسق مع صفحة الـ Login */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M10 20c-1.5 0-3-1.5-3-3s1.5-3 3-3 3 1.5 3 3-1.5 3-3 3zm6-3c0-2.5-2-4.5-4.5-4.5S7 14.5 7 17s2 4.5 4.5 4.5 4.5-2 4.5-4.5zm24 3c-1.5 0-3-1.5-3-3s1.5-3 3-3 3 1.5 3 3-1.5 3-3 3zm6-3c0-2.5-2-4.5-4.5-4.5S37 14.5 37 17s2 4.5 4.5 4.5 4.5-2 4.5-4.5z' fill='%23FFEBE1' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E") !important;
+        min-height: 100vh;
+    }
+
+    /* كرت التسجيل المطور */
+    .register-card {
+        width: 100%;
+        max-width: 520px; /* زيادة العرض قليلاً لتنسيق الحقول المزدوجة بشكل مريح */
+        border-radius: 24px !important;
+        border: 1px solid #E2E8F0 !important;
+        background: #FFFFFF;
+    }
+
+    /* الشعار والعناوين */
+    .brand-logo-text {
+        color: var(--pawzy-dark);
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+        .brand-logo-text i {
+            color: var(--pawzy-yellow);
+        }
+
+    .text-pawzy-link {
+        color: #B25329 !important; /* لون بني دافئ متناسق مع المشمشي للروابط */
+        font-weight: 600;
+    }
+
+    /* تخصيص حقول الإدخال لتطابق صفحة الـ Login */
+    .pawzy-input {
+        padding: 14px 16px !important;
+        border-radius: 12px !important;
+        border: 1px solid #CBD5E1 !important;
+        background-color: #FAFAFA;
+        color: var(--pawzy-dark);
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+    }
+
+        .pawzy-input:focus {
+            background-color: #FFFFFF;
+            border-color: var(--pawzy-yellow) !important;
+            box-shadow: 0 0 0 3px rgba(255, 196, 0, 0.15) !important;
+        }
+
+    /* زر إنشاء الحساب الافتراضي والحيوي للبراند */
+    .btn-pawzy-submit {
+        background-color: var(--pawzy-yellow) !important;
+        color: var(--pawzy-dark) !important;
+        border-radius: 50px !important; /* دائري بالكامل ليتطابق مع زر Shop Now */
+        padding: 14px !important;
+        font-weight: 700;
+        border: none !important;
+        transition: all 0.25s ease;
+    }
+
+        .btn-pawzy-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 196, 0, 0.25);
+        }
+</style>
+
+<div class="d-flex justify-content-center align-items-center vh-100 p-3">
+    <div class="card register-card p-4 shadow-sm">
+
+        <div class="text-center mb-4 mt-2">
+            <h3 class="brand-logo-text"><img src="~/images/pets.png" width="20px" height="20px" /><i class="fas fa-dog me-2"></i>FluffyCorner</h3>
         </div>
 
-        <h4 class="fw-bold mb-1">Create Account</h4>
-        <p class="text-muted small mb-4">Already have an account? <a asp-action="Login" class="text-decoration-none">Sign in</a></p>
+        <h4 class="fw-bold mb-1" style="color: var(--pawzy-dark);">Create Account</h4>
+        <p class="text-muted small mb-4">Already have an account? <a asp-action="Login" class="text-decoration-none text-pawzy-link">Sign in</a></p>
 
         <form asp-action="Register" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <input asp-for="FirstName" class="form-control" placeholder="First Name" style="padding: 12px; border-radius: 8px;" />
-                    <span asp-validation-for="FirstName" class="text-danger small"></span>
+                    <input asp-for="FirstName" class="form-control pawzy-input" placeholder="First Name" />
+                    <span asp-validation-for="FirstName" class="text-danger small mt-1 d-block"></span>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <input asp-for="LastName" class="form-control" placeholder="Last Name" style="padding: 12px; border-radius: 8px;" />
-                    <span asp-validation-for="LastName" class="text-danger small"></span>
+                    <input asp-for="LastName" class="form-control pawzy-input" placeholder="Last Name" />
+                    <span asp-validation-for="LastName" class="text-danger small mt-1 d-block"></span>
                 </div>
             </div>
 
             <div class="mb-3">
-                <input asp-for="Email" class="form-control" placeholder="Email" style="padding: 12px; border-radius: 8px;" />
-                <span asp-validation-for="Email" class="text-danger small"></span>
+                <input asp-for="Email" class="form-control pawzy-input" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger small mt-1 d-block"></span>
             </div>
 
             <div class="mb-3">
-                <input asp-for="Password" type="password" class="form-control" placeholder="Password" style="padding: 12px; border-radius: 8px;" />
-                <span asp-validation-for="Password" class="text-danger small"></span>
+                <input asp-for="Password" type="password" class="form-control pawzy-input" placeholder="Password" />
+                <span asp-validation-for="Password" class="text-danger small mt-1 d-block"></span>
             </div>
 
             <div class="mb-4">
-                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password" style="padding: 12px; border-radius: 8px;" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                <input asp-for="ConfirmPassword" type="password" class="form-control pawzy-input" placeholder="Confirm Password" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger small mt-1 d-block"></span>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100 fw-bold" style="background-color: #005bd3; border-radius: 10px; padding: 12px; border: none;">
+            <button type="submit" class="btn btn-pawzy-submit w-100">
                 Create Account
             </button>
         </form>

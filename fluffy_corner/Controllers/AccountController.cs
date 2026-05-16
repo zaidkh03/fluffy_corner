@@ -71,10 +71,20 @@ namespace fluffy_corner.Controllers
 
                 if (result.Succeeded)
                 {
-                    ////////////////////
-                    // لا تنسي تعدليها حسب الصفحة اللي بدنا نرجع الها بعد تسجيل الدخول
+                    // 2. جلب بيانات المستخدم الذي سجل دخوله للتو
+                    var user = await _userManager.FindByEmailAsync(model.Email);
+
+                    // 3. الفحص السحري: هل هذا المستخدم يمتلك دور "Admin"؟
+                    if (await _userManager.IsInRoleAsync(user, "Admin"))
+                    {
+                        // إذا كان أدمن، حوّله فوراً إلى الـ Dashboard داخل منطقة الـ Admin
+                        // تأكدي من مطابقة أسماء الـ Area والـ Controller والـ Action لمشروعك
+                        return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+                    }
+
                     return RedirectToAction("Index", "Home");
                 }
+                
 
                 if (result.IsLockedOut)
                 {

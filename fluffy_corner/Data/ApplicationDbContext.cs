@@ -19,5 +19,6 @@ namespace fluffy_corner.Data
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<ProductReview> ProductReviews { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
+        
     }
 }

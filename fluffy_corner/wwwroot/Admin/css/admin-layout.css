@@ -1,80 +1,133 @@
-﻿:root {
-    --pawzy-yellow: #FFD200;
-    --sidebar-bg: #f0f5ff; /* اللون الغامق من اللوجو */
-    --main-bg: #f8f9fa;
-    --text-muted: #6c757d;
-    --transition: all 0.3s ease;
+﻿<style >
+:root {
+    --pawzy-peach: #FFEBE1; /* اللون المشمشي الناعم من الهوية الجديدة */
+    --pawzy-yellow: #FFC400; /* الأصفر المشرق للأزرار والـ Active Tags */
+    --pawzy-dark: #1E2229; /* لون النصوص والعناوين الداكن والواضح */
+    --pawzy-sidebar-bg: #FFFFFF; /* تحويل السايدبار بالكامل لخلفية بيضاء راقية ونظيفة */
+    --pawzy-main-bg: #F8FAFC; /* رمادي خفيف جداً لخلفية المحتوى الرئيسي */
+    --text-muted: #64748B;
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--main-bg);
+    background-color: var(--pawzy-main-bg);
+    color: var(--pawzy-dark);
     overflow-x: hidden;
 }
 
-/* Sidebar Styling */
+/* تنسيق السايدبار المطور */
 #sidebar {
-    min-width: 260px;
-    max-width: 260px;
-    background: var(--sidebar-bg);
-    color: #fff;
+    min-width: 270px;
+    max-width: 270px;
+    background: var(--pawzy-sidebar-bg) !important;
+    color: var(--pawzy-dark) !important;
     transition: var(--transition);
     min-height: 100vh;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-right: 1px solid #E2E8F0;
 }
 
-    #sidebar .sidebar-header {
-        padding: 30px 25px;
-        border-bottom: 1px solid #2d2f31;
+    #sidebar.active {
+        margin-left: -270px;
     }
 
-    #sidebar ul p {
-        color: var(--text-muted);
-        padding: 10px 25px;
-        font-size: 0.8rem;
+    /* هيدر السايدبار المحتوي على اللوجو */
+    #sidebar .sidebar-header {
+        padding: 25px;
+        border-bottom: 1px solid #F1F5F9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* عناوين القوائم الجانبية (Main Menu, Management, etc) */
+    #sidebar p {
+        color: var(--text-muted) !important;
+        padding: 20px 25px 5px 25px;
+        margin: 0;
+        font-size: 0.75rem;
         text-transform: uppercase;
         font-weight: 700;
+        letter-spacing: 0.8px;
     }
 
+    /* روابط وعناصر القائمة */
     #sidebar ul li a {
-        padding: 12px 25px;
-        font-size: 1.1rem;
-        display: block;
-        color: #adb5bd;
+        padding: 12px 20px !important;
+        margin: 4px 15px !important; /* مسافات تجعل العنصر كأنه كرت عائم بحواف ناعمة */
+        font-size: 0.95rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        color: #475569 !important;
         text-decoration: none;
         transition: var(--transition);
-        border-left: 4px solid transparent;
+        border-radius: 12px !important;
     }
 
-        #sidebar ul li a:hover, #sidebar ul li.active > a {
-            color: var(--pawzy-yellow);
-            background: rgba(255, 210, 0, 0.05);
-            border-left-color: var(--pawzy-yellow);
+        /* تأثير التمرير (Hover) */
+        #sidebar ul li a:hover {
+            color: var(--pawzy-dark) !important;
+            background-color: #F1F5F9 !important;
         }
 
-        #sidebar ul li a i {
-            margin-right: 15px;
-            width: 20px;
-        }
+    /* تأثير الصفحة النشطة (Active Page) متوافق تماماً مع الثيم المشمشي */
+    #sidebar ul li.active > a {
+        color: #B25329 !important; /* درجة غامقة متناسقة مع المشمشي للقراءة */
+        background-color: var(--pawzy-peach) !important;
+        font-weight: 600;
+    }
 
-/* Main Content Area */
+    /* الأيقونات الجانبية */
+    #sidebar ul li a i {
+        margin-right: 12px;
+        font-size: 1.1rem;
+        width: 24px;
+        text-align: center;
+        color: #64748B;
+        transition: var(--transition);
+    }
+
+    /* إضاءة الأيقونة بالأصفر الحيوي عند تفعيل الصفحة */
+    #sidebar ul li.active > a i {
+        color: var(--pawzy-yellow) !important;
+    }
+
+/* محتوى الصفحة الرئيسي والـ Navbar العلوية */
 #content {
     width: 100%;
-    padding: 0;
     min-height: 100vh;
+    background-color: var(--pawzy-main-bg);
     transition: var(--transition);
 }
 
 .admin-navbar {
-    background: #fff;
-    padding: 15px 30px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    background: #FFFFFF !important;
+    padding: 16px 30px;
+    border-bottom: 1px solid #E2E8F0;
+    box-shadow: none !important;
 }
 
+/* زر إخفاء/إظهار السايدبار */
+#sidebarCollapse {
+    background-color: #F1F5F9;
+    border: none;
+    color: var(--pawzy-dark);
+    padding: 8px 14px;
+    border-radius: 8px;
+}
+
+    #sidebarCollapse:hover {
+        background-color: #E2E8F0;
+    }
+
+/* بروفايل المستخدم دائرية متناسقة */
 .user-profile-img {
     width: 40px;
     height: 40px;
-    border-radius: 12px;
+    border-radius: 50% !important;
     object-fit: cover;
+    border: 2px solid #E2E8F0;
 }
+
+</style >

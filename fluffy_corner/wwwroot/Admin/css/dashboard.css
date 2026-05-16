@@ -1,82 +1,86 @@
-﻿/* Custom Variables to match Pawzy Identity */
-:root {
-    --pawzy-yellow: #FFD200;
-    --pawzy-dark: #1A1C1E;
-    --pawzy-bg: #FDFDFD;
-    --card-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    --transition-speed: 0.3s;
+﻿:root {
+    --fluffy-mint: #C5EBAA; 
+    --fluffy-mint-light: #E8F9DF; 
+    --fluffy-yellow: #FFC400; 
+    --fluffy-dark: #1E293B; 
+    --fluffy-white: #FFFFFF;
 }
 
-/* Global Styles for Dashboard */
-.admin-dashboard-wrapper {
-    background-color: #f4f7f6;
-    min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
+body {
+    background-color: #F8FAFC;
+    color: var(--fluffy-dark);
 }
 
-/* Stat Cards Design */
-.stat-card {
+
+.admin-dashboard-wrapper h2 {
+    color: var(--fluffy-dark);
+}
+
+.btn-pawzy {
+    background-color: var(--fluffy-yellow) !important;
+    color: var(--fluffy-dark) !important;
+    border-radius: 50px !important; 
+    font-weight: bold;
     border: none;
-    border-radius: 24px;
-    transition: transform var(--transition-speed) ease;
-    background: white;
-    box-shadow: var(--card-shadow);
+    padding: 10px 24px;
+    transition: all 0.3s ease;
+}
+
+    .btn-pawzy:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 196, 0, 0.3);
+    }
+
+
+.stat-card {
+    background: var(--fluffy-white);
+    border: none !important;
+    border-radius: 20px !important; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
     .stat-card:hover {
         transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(30, 41, 59, 0.05) !important;
     }
 
+/* صناديق الأيقونات بألوان الهوية */
 .icon-box {
-    width: 60px;
-    height: 60px;
-    border-radius: 18px;
+    width: 55px;
+    height: 55px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
-/* Color Accents */
+/* تخصيص الألوان بناءً على صورة البراند */
+.bg-light-mint {
+    background-color: var(--fluffy-mint-light);
+    color: #4E872A;
+}
+
 .bg-light-yellow {
-    background-color: rgba(255, 210, 0, 0.15);
-    color: #b29300;
+    background-color: #FFF9E6;
+    color: #CC9D00;
 }
 
-.bg-light-blue {
-    background-color: rgba(0, 123, 255, 0.1);
-    color: #007bff;
+.bg-light-dark {
+    background-color: #E2E8F0;
+    color: var(--fluffy-dark);
 }
 
-.bg-light-success {
-    background-color: rgba(40, 167, 69, 0.1);
-    color: #28a745;
+.bg-light-info {
+    background-color: #E0F2FE;
+    color: #0369A1;
 }
 
-.bg-light-purple {
-    background-color: rgba(111, 66, 193, 0.1);
-    color: #6f42c1;
-}
-
-/* Components */
-.btn-pawzy {
-    background-color: var(--pawzy-yellow);
-    border-radius: 50px;
-    font-weight: 600;
-    padding: 10px 25px;
-    border: none;
-    color: var(--pawzy-dark);
-    transition: background 0.2s ease;
-}
-
-    .btn-pawzy:hover {
-        background-color: #e6bd00;
-        color: var(--pawzy-dark);
-    }
-
+/* حاوية الرسم البياني */
 .chart-container {
-    background: white;
+    background: var(--fluffy-white);
     border-radius: 24px;
-    padding: 25px;
-    box-shadow: var(--card-shadow);
+    padding: 28px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
 }

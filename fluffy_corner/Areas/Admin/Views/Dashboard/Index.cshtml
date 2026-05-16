@@ -3,82 +3,161 @@
     Layout = "_AdminLayout";
 }
 
-@section Styles {
-    @* ربط ملف الـ CSS المنفصل الذي أنشأتِه في wwwroot *@
-    <link rel="stylesheet" href="~/admin/css/dashboard.css" />
-}
+<style>
+    :root {
+        --pawzy-peach: #FFEBE1;       /* اللون المشمشي الناعم من خلفية الصورة الجديدة */
+        --pawzy-yellow: #FFC400;      /* الأصفر الحيوي لزر الـ Shop Now */
+        --pawzy-dark: #1E2229;        /* الأسود/الرمادي الداكن للنصوص والعناوين */
+        --pawzy-white: #FFFFFF;
+        --pawzy-gray-light: #F8FAFC;
+    }
+
+    body {
+        background-color: var(--pawzy-gray-light);
+        color: var(--pawzy-dark);
+    }
+
+    /* العنوان الرئيسي والأزرار */
+    .dashboard-title {
+        color: var(--pawzy-dark);
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    .btn-pawzy-new {
+        background-color: var(--pawzy-yellow) !important;
+        color: var(--pawzy-dark) !important;
+        border-radius: 50px !important; /* حواف دائرية بالكامل مثل زر Shop Now في الصورة */
+        font-weight: 700;
+        border: none;
+        padding: 10px 24px;
+        transition: all 0.25s ease;
+    }
+
+    .btn-pawzy-new:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 196, 0, 0.3);
+    }
+
+    /* كروت الإحصائيات المستوحاة من ألوان الموقع */
+    .pawzy-stat-card {
+        background: var(--pawzy-white);
+        border: 1px solid #E2E8F0 !important; /* حدود ناعمة ونظيفة Flat UI */
+        border-radius: 20px !important;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .pawzy-stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(30, 34, 41, 0.04) !important;
+    }
+
+    /* صناديق الأيقونات الملونة */
+    .pawzy-icon-box {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+    }
+
+    /* الخلفيات الملونة للكروت مأخوذة من تناسق الصورة */
+    .bg-pawzy-peach {
+        background-color: var(--pawzy-peach);
+        color: #C26D45; /* درجة غامقة متناسقة مع المشمشي */
+    }
+
+    .bg-pawzy-yellow {
+        background-color: #FFF9E6;
+        color: #CC9D00;
+    }
+
+    .bg-pawzy-dark {
+        background-color: #E2E8F0;
+        color: var(--pawzy-dark);
+    }
+
+    .bg-pawzy-info {
+        background-color: #E0F2FE;
+        color: #0369A1;
+    }
+
+    /* حاوية الرسم البياني */
+    .pawzy-chart-container {
+        background: var(--pawzy-white);
+        border: 1px solid #E2E8F0;
+        border-radius: 24px;
+        padding: 28px;
+    }
+</style>
 
 <div class="admin-dashboard-wrapper py-4 px-4">
 
-    <!-- Header: ترحيب الأدمن -->
     <div class="d-flex justify-content-between align-items-center mb-5">
         <div>
-            <h2 class="fw-bold mb-1" style="color: var(--pawzy-dark);">Dashboard Overview</h2>
-            <p class="text-muted">Welcome back! Here's what's happening at Pawzy today.</p>
+            <h2 class="dashboard-title mb-1">Dashboard Overview</h2>
+            <p class="text-muted small">Welcome back! Here's what's happening at Pawzy today.</p>
         </div>
-        <button class="btn btn-pawzy shadow-sm">
+        <button class="btn btn-pawzy-new shadow-sm">
             <i class="fas fa-plus me-2"></i> New Product
         </button>
     </div>
 
-    <!-- Stats Cards: عرض الأرقام القادمة من الـ Controller -->
     <div class="row g-4">
 
-        <!-- كرت المستخدمين -->
         <div class="col-xl-3 col-md-6">
-            <div class="card stat-card p-3">
+            <div class="card pawzy-stat-card p-3">
                 <div class="d-flex align-items-center">
-                    <div class="icon-box bg-light-yellow">
+                    <div class="pawzy-icon-box bg-pawzy-yellow">
                         <i class="fas fa-users"></i>
                     </div>
                     <div class="ms-3">
                         <h6 class="text-muted small mb-1">Total Users</h6>
-                        <h3 class="fw-bold mb-0">@ViewBag.TotalUsers</h3>
+                        <h3 class="fw-bold mb-0" style="color: var(--pawzy-dark);">@ViewBag.TotalUsers</h3>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- كرت الطلبات -->
         <div class="col-xl-3 col-md-6">
-            <div class="card stat-card p-3">
+            <div class="card pawzy-stat-card p-3">
                 <div class="d-flex align-items-center">
-                    <div class="icon-box bg-light-blue">
+                    <div class="pawzy-icon-box bg-pawzy-peach">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
                     <div class="ms-3">
                         <h6 class="text-muted small mb-1">Total Orders</h6>
-                        <h3 class="fw-bold mb-0">@ViewBag.TotalOrders</h3>
+                        <h3 class="fw-bold mb-0" style="color: var(--pawzy-dark);">@ViewBag.TotalOrders</h3>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- كرت المنتجات -->
         <div class="col-xl-3 col-md-6">
-            <div class="card stat-card p-3">
+            <div class="card pawzy-stat-card p-3">
                 <div class="d-flex align-items-center">
-                    <div class="icon-box bg-light-success">
+                    <div class="pawzy-icon-box bg-pawzy-dark">
                         <i class="fas fa-bone"></i>
                     </div>
                     <div class="ms-3">
                         <h6 class="text-muted small mb-1">Products</h6>
-                        <h3 class="fw-bold mb-0">@ViewBag.TotalProducts</h3>
+                        <h3 class="fw-bold mb-0" style="color: var(--pawzy-dark);">@ViewBag.TotalProducts</h3>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- كرت التصنيفات -->
         <div class="col-xl-3 col-md-6">
-            <div class="card stat-card p-3">
+            <div class="card pawzy-stat-card p-3">
                 <div class="d-flex align-items-center">
-                    <div class="icon-box bg-light-purple">
+                    <div class="pawzy-icon-box bg-pawzy-info">
                         <i class="fas fa-tags"></i>
                     </div>
                     <div class="ms-3">
                         <h6 class="text-muted small mb-1">Categories</h6>
-                        <h3 class="fw-bold mb-0">@ViewBag.TotalCategories</h3>
+                        <h3 class="fw-bold mb-0" style="color: var(--pawzy-dark);">@ViewBag.TotalCategories</h3>
                     </div>
                 </div>
             </div>
@@ -86,12 +165,11 @@
 
     </div>
 
-    <!-- قسم الرسوم البيانية -->
     <div class="row mt-5">
         <div class="col-lg-12">
-            <div class="chart-container">
-                <h5 class="fw-bold mb-4">Sales Analytics</h5>
-                <canvas id="salesChart" height="100"></canvas>
+            <div class="pawzy-chart-container">
+                <h5 class="fw-bold mb-4" style="color: var(--pawzy-dark);">Sales Analytics</h5>
+                <canvas id="salesChart" height="90"></canvas>
             </div>
         </div>
     </div>
@@ -99,21 +177,46 @@
 </div>
 
 @section Scripts {
-    <!-- استدعاء مكتبة الـ Charts وملف الـ JS الخاص بنا لاحقاً -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // كود تجريبي سريع للرسم البياني للتأكد من أن كل شيء يعمل
+        const rawData = @Html.Raw(Json.Serialize(Model));
+
+        const labels = rawData.map(item => item.date);
+        const values = rawData.map(item => item.totalOrders);
+
         const ctx = document.getElementById('salesChart').getContext('2d');
+        
+        // إنشاء تدرج لوني يعتمد على درجات المشمشي الدافئ لتصميم الكيرف
+        const peachGradient = ctx.createLinearGradient(0, 0, 0, 300);
+        peachGradient.addColorStop(0, 'rgba(255, 235, 225, 0.6)'); 
+        peachGradient.addColorStop(1, 'rgba(255, 235, 225, 0.0)');
+
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                labels: labels,
                 datasets: [{
-                    label: 'Sales',
-                    data: [10, 25, 15, 40, 35],
-                    borderColor: '#FFD200',
+                    label: 'Orders',
+                    data: values,
+                    borderColor: '#FFC400', // لون الخط الخارجي أصفر مميز مثل الأزرار
+                    borderWidth: 3,
+                    pointBackgroundColor: '#1E2229', // نقاط داكنة أنيقة ومحددة
+                    pointBorderColor: '#fff',
+                    pointHoverRadius: 6,
+                    backgroundColor: peachGradient, // تعبئة الكيرف بلون الخلفية المشمشي الناعم
+                    fill: true,
                     tension: 0.4
                 }]
+            },
+            options: {
+                responsive: true,
+                plugins: { 
+                    legend: { display: false } 
+                },
+                scales: {
+                    x: { grid: { display: false } }, // إخفاء الخطوط العمودية المزعجة لمظهر Flat عصري
+                    y: { grid: { color: '#E2E8F0' } }
+                }
             }
         });
     </script>
