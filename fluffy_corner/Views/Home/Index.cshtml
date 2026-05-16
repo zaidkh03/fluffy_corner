@@ -1,241 +1,329 @@
-﻿<section class="hero-section">
-    <div class="container-fluid">
-        <div class="row align-items-center hero-content">
+﻿@model List<fluffy_corner.Models.Product>
 
-            <div class="col-lg-5 hero-text">
-                <p class="hero-small">True Companions</p>
+@{
+    var wishlistProductIds = ViewBag.WishlistProductIds as List<int> ?? new List<int>();
+}
+<section class="hero-slider">
 
-                <h1 class="hero-title">
-                    Love, Treats, And Tails
-                </h1>
+    <div class="hero-slide slide-1 active">
 
-                <p class="hero-desc">
-                    Discover the best food, toys, and accessories for your lovely pets.
-                </p>
+        <div class="hero-text">
+            <p class="hero-small">True Companions</p>
 
-                <a href="#" class="shop-btn">Shop Now</a>
-            </div>
-            <div class="col-lg-7 text-center">
-                <img src="/images/pet_nobg.png" class="hero-img" />
-            </div>
+            <h1 class="hero-title">
+                Love, Treats, <br />
+                And Tails
+            </h1>
 
+            <p class="hero-desc">
+                Discover the best food, toys, and accessories
+                for your lovely pets.
+            </p>
+
+            <a href="#" class="shop-btn">
+                Shop Now
+            </a>
         </div>
+
+        <div class="hero-img-col">
+            <img src="/images/dooog.png"
+                 class="hero-pet-img" />
+        </div>
+
     </div>
+
+    <div class="hero-slide slide-2">
+
+        <div class="hero-text">
+            <p class="hero-small">Healthy Pets</p>
+
+            <h1 class="hero-title">
+                Premium Care <br />
+                For Your Friends
+            </h1>
+
+            <p class="hero-desc">
+                High-quality products carefully selected
+                for cats and dogs.
+            </p>
+
+            <a href="#" class="shop-btn">
+                Explore
+            </a>
+        </div>
+
+        <div class="hero-img-col">
+            <img src="/images/pet_nobg.png"
+                 class="hero-pet-img" />
+        </div>
+
+    </div>
+
+    <button class="arrow arrow-prev"
+            onclick="changeSlide(-1)">
+        ‹
+    </button>
+
+    <button class="arrow arrow-next"
+            onclick="changeSlide(1)">
+        ›
+    </button>
+
+    <div class="slider-dots">
+        <button class="dot active"
+                onclick="goSlide(0)"></button>
+
+        <button class="dot"
+                onclick="goSlide(1)"></button>
+    </div>
+
 </section>
+
 <section class="category-section">
 
-    <div class="container">
+    <div class="section-top">
+        <p class="category-small">Pet Picks</p>
 
-        <div class="text-center mb-5">
-            <p class="category-small">Pet Picks</p>
+        <h2 class="category-title">
+            Everything Your Pet Needs
+        </h2>
+    </div>
 
-            <h2 class="category-title">
-                Everything Your Pet Needs
-            </h2>
-        </div>
+    <div class="cat-grid">
 
-        <div class="row justify-content-center g-4">
+        <a href="#" class="category-card">
 
-            <!-- Cats -->
-            <div class="col-md-3 col-6">
-                <a href="#" class="category-card">
-
-                    <div class="category-icon">
-                        🐱
-                    </div>
-
-                    <h4>Cats</h4>
-
-                </a>
+            <div class="cat-img-wrap">
+                <img src="/images/DOG.jpg" />
             </div>
 
-            <!-- Dogs -->
-            <div class="col-md-3 col-6">
-                <a href="#" class="category-card">
+            <div class="cat-body">
+                <h4>Dogs</h4>
 
-                    <div class="category-icon">
-                        🐶
-                    </div>
 
-                    <h4>Dogs</h4>
-
-                </a>
+                <span class="cat-arr">→</span>
             </div>
 
-        </div>
+        </a>
+
+        <a href="#" class="category-card">
+
+            <div class="cat-img-wrap">
+                <img src="/images/CAT.jpg" />
+            </div>
+
+            <div class="cat-body">
+                <h4>Cat</h4>
+
+
+                <span class="cat-arr">→</span>
+            </div>
+
+        </a>
 
     </div>
 
 </section>
 
 <section class="products-section">
-    <div class="container-fluid px-5">
 
-        <div class="d-flex justify-content-between align-items-center mb-5">
-            <div>
-                <p class="section-small">Flash Deals</p>
-                <h2 class="section-title">Best Selling Products</h2>
-            </div>
+    <div class="products-header">
 
-            <a href="/Products" class="view-all-link">View All →</a>
+        <div>
+            <p class="section-small">Popular Products</p>
+
+            <h2 class="section-title">
+                Best Sellers
+            </h2>
         </div>
 
-        <div class="row g-4">
-
-            <div class="col-lg-4 col-md-6">
-                <div class="product-card">
-                    <span class="discount-badge">-20%</span>
-                    <img src="/images/product1.png" class="product-img" />
-                    <h4>Reflex Dog Food</h4>
-                    <p>15.00 JD</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="product-card">
-                    <span class="discount-badge">-12%</span>
-                    <img src="/images/product2.png" class="product-img" />
-                    <h4>Cat Scratcher Bed</h4>
-                    <p>22.00 JD</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="product-card">
-                    <span class="discount-badge">-9%</span>
-                    <img src="/images/product3.png" class="product-img" />
-                    <h4>Pet House Bed</h4>
-                    <p>30.00 JD</p>
-                </div>
-            </div>
-
-        </div>
+        <a href="#" class="view-all-link">
+            View All
+        </a>
 
     </div>
-</section>
 
-<section class="testimonial-section">
+    <div class="prod-grid">
 
-    <div class="container">
+        @foreach (var product in Model)
+        {
+            var image = product.Images.FirstOrDefault()?.ImageUrl;
 
-        <div class="row align-items-center">
+            if (string.IsNullOrEmpty(image))
+            {
+                image = "/images/cat-error.png";
+            }
 
-            <div class="col-lg-5">
+            var isFavorite = wishlistProductIds.Contains(product.Id);
 
-                <p class="testimonial-small">
-                    Happy Pets, Happy Owners
-                </p>
+            <div class="product-card">
 
-                <h2 class="testimonial-title">
-                    What Pet Parents Say
-                </h2>
+                <div class="prod-img-wrap">
 
-                <p class="testimonial-desc">
-                    Hear heartwarming stories and honest reviews
-                    from our happy customers.
-                </p>
+                    @if (product.DiscountPercentage != null)
+                    {
+                        <span class="discount-badge">
+                            -@product.DiscountPercentage%
+                        </span>
+                    }
 
-            </div>
+                    <form asp-controller="Wishlist"
+                          asp-action="Add"
+                          method="post">
 
-            <div class="col-lg-7">
+                        @Html.AntiForgeryToken()
 
-                <div class="testimonial-card">
+                        <input type="hidden"
+                               name="productId"
+                               value="@product.Id" />
 
-                    <div class="row align-items-center">
+                        <button type="submit"
+                                class="heart-btn @(isFavorite ? "favorite-active" : "")">
 
-                        <div class="col-md-4 text-center">
-                            <img src="/images/testimonial.png"
-                                 class="testimonial-img" />
-                        </div>
+                            @(isFavorite ? "♥" : "♡")
 
-                        <div class="col-md-8">
+                        </button>
 
-                            <div class="stars">
-                                ★★★★★
-                            </div>
+                    </form>
 
-                            <p class="testimonial-text">
-                                My dog absolutely loves everything we got from here —
-                                the toys, treats, and bed are amazing quality!
-                            </p>
+                    <img src="@image"
+                         class="product-img"
+                         alt="@product.Name" />
 
-                            <h5 class="testimonial-name">
-                                Sarah Johnson
-                            </h5>
+                </div>
 
-                        </div>
+                <div class="prod-body">
+
+                    <h4>@product.Name</h4>
+
+                    <div class="prod-footer">
+
+                        <span class="prod-price">
+                            $@product.Price
+                        </span>
+
+                        <button class="add-to-cart">
+                            +
+                        </button>
 
                     </div>
 
                 </div>
 
             </div>
+        }
+
+    </div>
+
+</section>
+
+<section class="testimonial-section">
+
+    <div class="test-inner">
+
+        <div class="test-left">
+
+            <p class="testimonial-small">
+                Testimonials
+            </p>
+
+            <h2 class="testimonial-title">
+                Loved By Pet Owners
+            </h2>
+
+        </div>
+
+        <div class="testimonial-card">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <div class="test-content-row">
+
+                <img src="/images/user.jpg"
+                     class="testimonial-img" />
+
+                <div>
+
+                    <h4>Sarah Johnson</h4>
+
+                    <p>
+                        Amazing products and fast delivery.
+                        My cat absolutely loves the food!
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
 </section>
+<footer class="main-footer">
 
-<footer class="footer-section">
+    <div class="footer-container">
 
-    <div class="container">
+        <div class="footer-brand">
 
-        <div class="row gy-5">
+            <h2>🐾 Fluffy Corner</h2>
 
-            <div class="col-lg-4">
-                <h2 class="footer-logo">
-                    🐾 Fluffy Corner
-                </h2>
+            <p>
+                Your lovely place for pet food,
+                toys, accessories and care.
+            </p>
 
-                <p class="footer-text">
-                    Your trusted pet shop for food, toys,
-                    accessories, and everything your pets love.
-                </p>
-            </div>
+        </div>
 
-            <div class="col-lg-2">
-                <h4 class="footer-title">Quick Links</h4>
+        <div class="footer-links">
 
-                <ul class="footer-links">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/Products">Products</a></li>
-                    <li><a href="/Categories">Categories</a></li>
-                </ul>
-            </div>
+            <h4>Quick Links</h4>
 
-            <div class="col-lg-2">
-                <h4 class="footer-title">Categories</h4>
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">Categories</a>
+            <a href="#">Wishlist</a>
 
-                <ul class="footer-links">
-                    <li><a href="#">Cats</a></li>
-                    <li><a href="#">Dogs</a></li>
-                </ul>
-            </div>
+        </div>
 
-            <div class="col-lg-4">
-                <h4 class="footer-title">Contact</h4>
+        <div class="footer-links">
 
-                <p class="footer-contact">
-                    📍 Amman, Jordan
-                </p>
+            <h4>Support</h4>
 
-                <p class="footer-contact">
-                    📞 +962 7XXXXXXXX
-                </p>
+            <a href="#">Contact</a>
+            <a href="#">FAQ</a>
+            <a href="#">Privacy Policy</a>
 
-                <p class="footer-contact">
-                    ✉ fluffycorner@gmail.com
-                </p>
+        </div>
+
+        <div class="footer-newsletter">
+
+            <h4>Newsletter</h4>
+
+            <p>
+                Subscribe for new offers & updates.
+            </p>
+
+            <div class="newsletter-box">
+
+                <input type="email"
+                       placeholder="Your Email" />
+
+                <button>
+                    →
+                </button>
+
             </div>
 
         </div>
 
-        <hr class="footer-line" />
+    </div>
 
-        <div class="footer-bottom">
-            © 2026 Fluffy Corner. All Rights Reserved.
-        </div>
+    <div class="footer-bottom">
+
+        © 2026 Fluffy Corner — All Rights Reserved
 
     </div>
 

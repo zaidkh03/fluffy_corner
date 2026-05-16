@@ -54,7 +54,7 @@ builder.Services.AddScoped<IDashboardService, DashboardService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+/*if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
 }
@@ -63,6 +63,8 @@ else
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+*/
+app.UseDeveloperExceptionPage();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

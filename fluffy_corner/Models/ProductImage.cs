@@ -1,10 +1,13 @@
-﻿namespace fluffy_corner.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace fluffy_corner.Models
 {
     public class ProductImage
     {
         public int Id { get; set; }
 
-        public string ImageUrl { get; set; }
+        [Required]
+        public string ImageUrl { get; set; } = string.Empty;
 
         public bool IsPrimary { get; set; } = false;
 
@@ -14,6 +17,6 @@
         public int ProductId { get; set; }
 
         // Navigation
-        public Product Product { get; set; }
+        public Product? Product { get; set; }
     }
 }

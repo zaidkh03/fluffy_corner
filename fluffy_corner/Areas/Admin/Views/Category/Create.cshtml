@@ -1,0 +1,228 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Manage Categories";
+}
+@model fluffy_corner.Models.Category
+
+@{
+    ViewData["Title"] = "Create Category";
+}
+
+<div class="create-category-page">
+
+    <div class="top-header">
+        <div>
+            <span class="page-tag">Admin Dashboard</span>
+            <h1>Create New Category</h1>
+            <p>Add a new category for your store products.</p>
+        </div>
+
+        <a asp-area="Admin"
+           asp-controller="Category"
+           asp-action="Index"
+           class="back-btn">
+            ← Back
+        </a>
+    </div>
+
+    <div class="form-card">
+
+        <form asp-area="Admin"
+              asp-controller="Category"
+              asp-action="Create"
+              method="post" enctype="multipart/form-data" >
+
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+            <div class="form-group">
+                <label asp-for="Name">Category Name</label>
+                <input asp-for="Name" placeholder="Enter category name" />
+                <span asp-validation-for="Name" class="validation-text"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description">Description</label>
+                <textarea asp-for="Description"
+                          rows="5"
+                          placeholder="Write category description"></textarea>
+                <span asp-validation-for="Description" class="validation-text"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImageUrl">Category Image URL</label>
+                <div class="form-group mb-4">
+
+                    <label class="form-label">
+                        Upload Category Image
+                    </label>
+
+                    <input asp-for="ImageFile"
+                           type="file"
+                           class="form-control" />
+
+                </div>
+                <span asp-validation-for="ImageUrl" class="validation-text"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IsActive">Status</label>
+                <select asp-for="IsActive">
+                    <option value="true">Active</option>
+                    <option value="false">Hidden</option>
+                </select>
+            </div>
+
+            <div class="buttons">
+                <button type="submit" class="save-btn">
+                    Save Category
+                </button>
+
+                <a asp-area="Admin"
+                   asp-controller="Category"
+                   asp-action="Index"
+                   class="cancel-btn">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<style>
+    .create-category-page {
+        padding: 45px;
+        background: #f8f7f4;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+
+    .top-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .page-tag {
+        background: #fff4d6;
+        color: #c28a00;
+        padding: 7px 14px;
+        border-radius: 999px;
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    .top-header h1 {
+        font-size: 42px;
+        margin: 18px 0 10px;
+        color: #1f2a3d;
+    }
+
+    .top-header p {
+        color: #777;
+        font-size: 17px;
+    }
+
+    .back-btn {
+        background: white;
+        padding: 14px 22px;
+        border-radius: 12px;
+        text-decoration: none;
+        color: #1f2a3d;
+        font-weight: bold;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .form-card {
+        background: white;
+        padding: 35px;
+        border-radius: 22px;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+        max-width: 850px;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1f2a3d;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e6e6e6;
+            border-radius: 14px;
+            font-size: 15px;
+            outline: none;
+        }
+
+            .form-group input:focus,
+            .form-group textarea:focus,
+            .form-group select:focus {
+                border-color: #f5b700;
+            }
+
+    .validation-text,
+    .validation-summary {
+        color: #dc2626;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 8px;
+        display: block;
+    }
+
+    .buttons {
+        margin-top: 35px;
+        display: flex;
+        gap: 15px;
+    }
+
+    .save-btn {
+        background: #f5b700;
+        color: white;
+        border: none;
+        padding: 16px 28px;
+        border-radius: 14px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(245,183,0,0.25);
+    }
+
+    .cancel-btn {
+        background: #f1f1f1;
+        color: #333;
+        padding: 16px 28px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    @@media(max-width: 900px) {
+        .top-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .form-card {
+            padding: 25px;
+        }
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

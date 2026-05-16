@@ -1,0 +1,364 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Manage Categories";
+}
+
+@model List<fluffy_corner.Models.Category>
+
+<div class="admin-category-page">
+
+    <div class="page-header">
+
+        <div>
+            <span class="page-tag">Admin Dashboard</span>
+
+            <h1>Manage Categories</h1>
+
+            <p>
+                Organize store categories and control how they appear to customers.
+            </p>
+        </div>
+
+        <a href="/Admin/Category/Create"
+           class="add-btn">
+            + Add Category
+        </a>
+
+    </div>
+
+    <div class="tools-card">
+
+        <input type="text" placeholder="Search category..." />
+
+        <select>
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Hidden</option>
+        </select>
+
+    </div>
+
+    <div class="category-card">
+
+        <table class="category-table">
+
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Products</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th class="actions-col">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var category in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                <div class="category-info">
+
+                                    @{
+                                        var image = string.IsNullOrEmpty(category.ImageUrl)
+                                        ? "/images/cat-error.png"
+                                        : category.ImageUrl;
+                                    }
+
+                                    <img src="@image"
+                                         alt="@category.Name"
+                                         class="category-img"
+                                         onerror="this.src='/images/cat-error.png'" />
+
+                                    <div>
+                                        <h3>@category.Name</h3>
+                                        <p>@category.Description</p>
+                                    </div>
+
+                                </div>
+                            </td>
+
+                            <td>
+                                @(category.Products != null ? category.Products.Count : 0)
+                                products
+                            </td>
+
+                            <td>
+
+                                @if (category.IsActive)
+                                {
+                                    <span class="status active">
+                                        Active
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="status hidden">
+                                        Hidden
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+                                @category.CreatedAt.ToString("MMM yyyy")
+                            </td>
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <a href="/Admin/Category/Edit/@category.Id"
+                                       class="edit-btn">
+                                        Edit
+                                    </a>
+
+                                    <form action="/Admin/Category/Delete/@category.Id"
+                                          method="post"
+                                          class="delete-form">
+
+                                        @Html.AntiForgeryToken()
+
+                                        <button type="submit"
+                                                class="delete-btn"
+                                                onclick="return confirm('Are you sure you want to delete this category?')">
+
+                                            Delete
+
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+
+                        <td colspan="5" class="empty-row">
+                            No categories found. Add your first category 🐾
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<style>
+
+    .admin-category-page {
+        padding: 45px;
+        background: #f8f7f4;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+    }
+
+    .page-tag {
+        background: #fff4d6;
+        color: #c28a00;
+        padding: 7px 14px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 13px;
+    }
+
+    .page-header h1 {
+        font-size: 42px;
+        color: #1f2a3d;
+        margin: 18px 0 8px;
+    }
+
+    .page-header p {
+        color: #777;
+        font-size: 17px;
+        margin: 0;
+    }
+
+    .add-btn {
+        background: #f5b700;
+        color: white;
+        padding: 15px 26px;
+        border-radius: 13px;
+        text-decoration: none;
+        font-weight: 800;
+        box-shadow: 0 10px 20px rgba(245, 183, 0, 0.25);
+        display: inline-block;
+    }
+
+        .add-btn:hover {
+            color: white;
+            background: #e0a800;
+        }
+
+    .tools-card {
+        background: white;
+        border-radius: 18px;
+        padding: 20px;
+        display: flex;
+        gap: 15px;
+        margin-bottom: 25px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    }
+
+        .tools-card input,
+        .tools-card select {
+            padding: 14px 16px;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .tools-card input {
+            flex: 1;
+        }
+
+    .category-card {
+        background: white;
+        border-radius: 22px;
+        padding: 28px;
+        box-shadow: 0 14px 35px rgba(0,0,0,0.08);
+    }
+
+    .category-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .category-table th,
+        .category-table td {
+            padding: 18px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .category-table th {
+            color: #1f2a3d;
+            font-size: 15px;
+        }
+
+    .category-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .category-img {
+        width: 70px;
+        height: 70px;
+        border-radius: 18px;
+        object-fit: cover;
+        background: #fff4d6;
+    }
+
+    .category-info h3 {
+        margin: 0;
+        color: #1f2a3d;
+    }
+
+    .category-info p {
+        margin: 5px 0 0;
+        color: #777;
+        font-size: 14px;
+    }
+
+    .status {
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-weight: 800;
+        font-size: 13px;
+    }
+
+        .status.active {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status.hidden {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+    .actions-col {
+        width: 240px;
+    }
+
+    .action-buttons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .delete-form {
+        margin: 0;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        padding: 10px 16px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 800;
+        border: none;
+        cursor: pointer;
+    }
+
+    .edit-btn {
+        background: #fff4d6;
+        color: #c28a00;
+    }
+
+    .delete-btn {
+        background: #ffe1e1;
+        color: #dc2626;
+    }
+
+    .empty-row {
+        text-align: center !important;
+        color: #777;
+        font-weight: bold;
+        padding: 35px !important;
+    }
+
+    @@media (max-width: 900px) {
+
+        .page-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .category-card {
+            overflow-x: auto;
+        }
+
+        .tools-card {
+            flex-direction: column;
+        }
+    }
+
+</style>

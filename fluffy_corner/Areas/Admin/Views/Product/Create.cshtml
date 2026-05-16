@@ -1,0 +1,338 @@
+﻿@model fluffy_corner.Models.Product
+@using fluffy_corner.Models
+
+@{
+    ViewData["Title"] = "Create Product";
+    var categories = ViewBag.Categories as List<Category>;
+}
+
+<div class="create-product-page">
+
+    <div class="top-header">
+
+        <div>
+            <span class="page-tag">Admin Dashboard</span>
+
+            <h1>Create Product</h1>
+
+            <p>
+                Add a new product to your store.
+            </p>
+        </div>
+
+        <a href="/Admin/Product"
+           class="back-btn">
+            ← Back
+        </a>
+
+    </div>
+
+    <div class="form-card">
+
+        <form action="/Admin/Product/Create"
+              method="post"
+              enctype="multipart/form-data">
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Product Name</label>
+
+                    <input name="Name"
+                           placeholder="Enter product name"
+                           required />
+                </div>
+
+                <div class="form-group">
+                    <label>SKU</label>
+
+                    <input name="SKU"
+                           placeholder="SKU-001"
+                           required />
+                </div>
+
+                <div class="form-group">
+                    <label>Brand</label>
+
+                    <input name="Brand"
+                           placeholder="Brand name" />
+                </div>
+
+                <div class="form-group">
+                    <label>Price</label>
+
+                    <input name="Price"
+                           type="number"
+                           step="0.01"
+                           required />
+                </div>
+
+                <div class="form-group">
+                    <label>Discount %</label>
+
+                    <input name="DiscountPercentage"
+                           type="number"
+                           step="0.01" />
+                </div>
+
+                <div class="form-group">
+                    <label>Stock Quantity</label>
+
+                    <input name="StockQuantity"
+                           type="number"
+                           required />
+                </div>
+
+                <div class="form-group">
+                    <label>Weight</label>
+
+                    <input name="Weight"
+                           type="number"
+                           step="0.01" />
+                </div>
+
+                <div class="form-group">
+
+                    <label>Animal Type</label>
+
+                    <select name="AnimalType" required>
+                        <option value="Cat">Cat</option>
+                        <option value="Dog">Dog</option>
+                        <option value="Both">Both</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Category</label>
+
+                    <select name="CategoryId" required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        @if (categories != null)
+                        {
+                            foreach (var category in categories)
+                            {
+                        <option value="@category.Id">
+                            @category.Name
+                        </option>
+                            }
+                        }
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Upload Product Image</label>
+
+                    <input name="ImageFile"
+                           type="file"
+                           accept="image/*" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Short Description</label>
+
+                <textarea name="ShortDescription"
+                          rows="3"></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Description</label>
+
+                <textarea name="Description"
+                          rows="6"></textarea>
+
+            </div>
+
+            <div class="checkboxes">
+
+                <label>
+                    <input name="IsFeatured"
+                           type="checkbox"
+                           value="true" />
+
+                    Featured Product
+                </label>
+
+                <label>
+                    <input name="IsActive"
+                           type="checkbox"
+                           value="true"
+                           checked />
+
+                    Active Product
+                </label>
+
+            </div>
+
+            <div class="buttons">
+
+                <button type="submit"
+                        class="save-btn">
+
+                    Save Product
+
+                </button>
+
+                <a href="/Admin/Product"
+                   class="cancel-btn">
+
+                    Cancel
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<style>
+
+    .create-product-page {
+        padding: 45px;
+        background: #f8f7f4;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+
+    .top-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .page-tag {
+        background: #fff4d6;
+        color: #c28a00;
+        padding: 7px 14px;
+        border-radius: 999px;
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    .top-header h1 {
+        font-size: 42px;
+        margin: 18px 0 10px;
+        color: #1f2a3d;
+    }
+
+    .top-header p {
+        color: #777;
+        font-size: 17px;
+    }
+
+    .back-btn {
+        background: white;
+        padding: 14px 22px;
+        border-radius: 12px;
+        text-decoration: none;
+        color: #1f2a3d;
+        font-weight: bold;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .form-card {
+        background: white;
+        padding: 35px;
+        border-radius: 22px;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 22px;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1f2a3d;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e5e5e5;
+            border-radius: 14px;
+            font-size: 15px;
+            outline: none;
+        }
+
+    .checkboxes {
+        display: flex;
+        gap: 25px;
+        margin: 10px 0 30px;
+    }
+
+        .checkboxes label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+
+    .buttons {
+        display: flex;
+        gap: 15px;
+    }
+
+    .save-btn {
+        background: #f5b700;
+        color: white;
+        border: none;
+        padding: 16px 28px;
+        border-radius: 14px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .cancel-btn {
+        background: #f1f1f1;
+        color: #333;
+        padding: 16px 28px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    @@media(max-width: 900px) {
+
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .top-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+    }
+</style>

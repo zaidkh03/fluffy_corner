@@ -1,0 +1,291 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Manage Products";
+}
+@model List<fluffy_corner.Models.Product>
+
+@{
+    ViewData["Title"] = "Manage Products";
+}
+
+<div class="admin-product-page">
+
+    <div class="page-header">
+
+        <div>
+            <span class="page-tag">Admin Dashboard</span>
+
+            <h1>Manage Products</h1>
+
+            <p>
+                Manage store products, prices, stock, and visibility.
+            </p>
+        </div>
+        <a href="/Admin/Product/Create" class="add-btn">
+            + Add Product
+        </a>
+
+    </div>
+
+    <div class="product-card">
+
+        <table class="product-table">
+
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var product in Model)
+                    {
+                        var image = product.Images.FirstOrDefault()?.ImageUrl;
+
+                        if (string.IsNullOrEmpty(image))
+                        {
+                            image = "/images/cat-error.png";
+                        }
+                        else if (!image.StartsWith("/") && !image.StartsWith("http"))
+                        {
+                            image = "/images/" + image;
+                        }
+
+                        <tr>
+                            <td>
+                                <div class="product-info">
+
+                                    <img src="@image"
+                                         alt="@product.Name"
+                                         onerror="this.src='/images/cat-error.png'" />
+
+                                    <div>
+                                        <h3>@product.Name</h3>
+                                        <p>@product.Brand</p>
+                                    </div>
+
+                                </div>
+                            </td>
+
+                            <td>@product.Category?.Name</td>
+
+                            <td>$@product.Price</td>
+
+                            <td>@product.StockQuantity</td>
+
+                            <td>
+                                @if (product.IsActive)
+                                {
+                                    <span class="status active">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="status hidden">Hidden</span>
+                                }
+                            </td>
+
+                            <td>
+                                <div class="action-buttons">
+
+                                    <a href="/Admin/Product/Edit/@product.Id" class="edit-btn">
+                                        Edit
+                                    </a>
+
+                                    <form action="/Admin/Product/Delete/@product.Id" method="post">
+                                        @Html.AntiForgeryToken()
+
+                                        <button type="submit"
+                                                class="delete-btn"
+                                                onclick="return confirm('Delete this product?')">
+                                            Delete
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="empty-row">
+                            No products found 🐾
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<style>
+    .admin-product-page {
+        padding: 45px;
+        background: #f8f7f4;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        gap: 20px;
+    }
+
+    .page-tag {
+        background: #fff4d6;
+        color: #c28a00;
+        padding: 7px 14px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 13px;
+    }
+
+    .page-header h1 {
+        font-size: 42px;
+        color: #1f2a3d;
+        margin: 18px 0 8px;
+    }
+
+    .page-header p {
+        color: #777;
+        font-size: 17px;
+        margin: 0;
+    }
+
+    .header-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .add-btn,
+    .home-btn {
+        color: white;
+        padding: 15px 26px;
+        border-radius: 13px;
+        text-decoration: none;
+        font-weight: 800;
+        display: inline-block;
+    }
+
+    .add-btn {
+        background: #f5b700;
+        box-shadow: 0 10px 20px rgba(245, 183, 0, 0.25);
+    }
+
+    .home-btn {
+        background: #1f2a3d;
+    }
+
+    .product-card {
+        background: white;
+        border-radius: 22px;
+        padding: 28px;
+        box-shadow: 0 14px 35px rgba(0,0,0,0.08);
+    }
+
+    .product-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .product-table th,
+        .product-table td {
+            padding: 18px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+    .product-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+        .product-info img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 20px;
+            background: #f5f5f5;
+        }
+
+        .product-info h3 {
+            margin: 0;
+            color: #1f2a3d;
+        }
+
+        .product-info p {
+            margin-top: 5px;
+            color: #777;
+            font-size: 14px;
+        }
+
+    .status {
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+        .status.active {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status.hidden {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+        .action-buttons form {
+            margin: 0;
+        }
+
+    .edit-btn,
+    .delete-btn {
+        padding: 10px 16px;
+        border-radius: 10px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .edit-btn {
+        background: #fff4d6;
+        color: #c28a00;
+    }
+
+    .delete-btn {
+        background: #ffe1e1;
+        color: #dc2626;
+    }
+
+    .empty-row {
+        text-align: center !important;
+        padding: 35px !important;
+        color: #777;
+        font-weight: bold;
+    }
+</style>
